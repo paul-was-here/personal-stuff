@@ -6,6 +6,7 @@ def Dimensions(Matrix):
     M = int(dims[0:1])
     N = int(dims[len(dims)-1:len(dims)])
     return(M,N)
+    # this function could be improved to accept inputs >1 digit (i.e. 10x10)
 
 def Values(Rows,Cols,MatrixID):
     Matrix = [[0 for x in range(Cols)] for y in range(Rows)]
