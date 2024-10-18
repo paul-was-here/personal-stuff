@@ -1,12 +1,21 @@
 # Multiplies two matrices A and B to output C
-# Does what numpy does I guess...
+# It's glorified numpy but not even glorified
 
 def Dimensions(Matrix):
-    dims = input("Enter dimentions of "+Matrix+": ")
-    M = int(dims[0:1])
-    N = int(dims[len(dims)-1:len(dims)])
-    return(M,N)
-    # this function could be improved to accept inputs >1 digit (i.e. 10x10)
+    dims = str(input("Enter dimentions of "+Matrix+": "))
+    M, N = "", ""
+    
+    for i in range(len(dims)):
+        if dims[i].isnumeric():
+            M = M+str(dims[i])
+        else: break
+
+    for i in reversed(range(len(dims))):
+        if dims[i].isnumeric():
+            N = N+str(dims[i])
+        else: break
+
+    return(int(M),int(N[::-1]))
 
 def Values(Rows,Cols,MatrixID):
     Matrix = [[0 for x in range(Cols)] for y in range(Rows)]
@@ -15,36 +24,26 @@ def Values(Rows,Cols,MatrixID):
         row = input("Enter Row"+MatrixID+str(i+1)+" separated by spaces: ")
         for j in range(0,Cols,1):
             Matrix[i][j] = row.split(" ")[j]
+
     return(Matrix)
+
 
 def Multiplication(A, B, RowsC, ColsC, InnerDim):
     C = [[0 for x in range(ColsC)] for y in range(RowsC)]
-    i = 0
-    while i <= RowsC-1:
-        j = 0
-        while j <= ColsC-1:
-            l = 0
-            while l <= InnerDim-1:
+
+    for i in range(RowsC):
+        for j in range(ColsC):
+            for l in range(InnerDim):
                 C[i][j] += float(A[i][l])*float(B[l][j])
-                l+=1
-            j+=1
-        i+=1
+
     return(C)
 
-    '''
-    for i in (0, RowsC-1, 1):
-        for j in (0, ColsC-1, 1):
-            for l in (0, InnerDim-1, 1):
-                C[i][j] += float(A[i][l])*float(B[l][j])
-    # this doesn't work? i literally don't know how this is different from the while loop that DOES work...
-    '''
 
 def Printing(C):
    print("\nMatrix C:")
-   i = 0
-   while i <= len(C[0])-1: 
-       print(str(C[i][0:len(C)])); i+=1
-    # again i literally dont know why for i = (0, len(C[0])-1, 1) messes up but here we are...
+   #i = 0
+   for i in range(len(C[0])): 
+       print(str(C[i][0:len(C)]))
 
 Am, An = Dimensions("A")
 Bn, Bo = Dimensions("B")
