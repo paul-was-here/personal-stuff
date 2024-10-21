@@ -27,9 +27,13 @@ def Values(Rows,Cols,MatrixID):
     for i in range(0,Rows,1):
         row = input("Enter Row"+MatrixID+str(i+1)+" separated by spaces: ")
         for j in range(0,Cols,1):
-            Matrix[i][j] = row.split(" ")[j]
+            Matrix[i][j] = ValueCleaning(row.split(" ")[j])
 
     return(Matrix)
+
+
+def ValueCleaning(x):
+    return(float(Fraction(x)))
 
 
 def Multiplication(A, B, RowsC, ColsC, InnerDim):
@@ -38,7 +42,7 @@ def Multiplication(A, B, RowsC, ColsC, InnerDim):
     for i in range(RowsC):
         for j in range(ColsC):
             for l in range(InnerDim):
-                C[i][j] += round(float(Fraction(A[i][l]))*float(Fraction(B[l][j])),3)
+                C[i][j] += round(A[i][l]*B[l][j],3)
 
     return(C)
 
