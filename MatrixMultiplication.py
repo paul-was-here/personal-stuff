@@ -27,14 +27,12 @@ def Values(Rows,Cols,MatrixID):
     for i in range(0,Rows,1):
         row = input("Enter Row"+MatrixID+str(i+1)+" separated by spaces: ")
         for j in range(0,Cols,1):
-            Matrix[i][j] = ValueCleaning(row.split(" ")[j])
+            Matrix[i][j] = str2num(row.split(" ")[j])
 
     return(Matrix)
 
-
-def ValueCleaning(x):
+def str2num(x):
     return(float(Fraction(x)))
-
 
 def Multiplication(A, B, RowsC, ColsC, InnerDim):
     C = [[0 for x in range(ColsC)] for y in range(RowsC)]
@@ -45,7 +43,6 @@ def Multiplication(A, B, RowsC, ColsC, InnerDim):
                 C[i][j] += round(A[i][l]*B[l][j],3)
 
     return(C)
-
 
 def Printing(C):
    print("\nMatrix C:")
@@ -59,8 +56,5 @@ if An != Bn:
     print("Inner dimensions must match.")
     exit()
 
-MxA = Values(Am,An," A ")
-MxB = Values(Bn,Bo," B ")
-MxC = Multiplication(MxA,MxB,Am,Bo,An)
-
-Printing(MxC)
+MxA, MxB = Values(Am,An," A "), Values(Bn,Bo," B ")
+Printing(Multiplication(MxA,MxB,Am,Bo,An))
