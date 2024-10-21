@@ -1,8 +1,6 @@
 # Multiplies two matrices A and B to output C
 # It's glorified numpy but not even glorified
 
-#aware of some problems with small dimensions i.e. 1x2 x 2x2 fails at printing
-
 from fractions import Fraction
 
 def Dimensions(Matrix):
@@ -45,10 +43,10 @@ def Multiplication(A, B, RowsC, ColsC, InnerDim):
     return(C)
 
 def Printing(C):
-   print("\nMatrix C:")
-   for i in range(len(C[0])):
-       print(str(C[i][0:len(C)]))
-
+    print("\nMatrix C:")
+    for i in range(len(C)):
+        print(str(C[i][:]))
+       
 Am, An = Dimensions("A")
 Bn, Bo = Dimensions("B")
 
