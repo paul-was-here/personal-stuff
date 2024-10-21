@@ -1,10 +1,12 @@
 # Multiplies two matrices A and B to output C
 # It's glorified numpy but not even glorified
 
+from fractions import Fraction
+
 def Dimensions(Matrix):
-    dims = str(input("Enter dimentions of "+Matrix+": "))
+    dims = str(input("Enter dimensions of "+Matrix+": "))
     M, N = "", ""
-    
+
     for i in range(len(dims)):
         if dims[i].isnumeric():
             M = M+str(dims[i])
@@ -34,14 +36,13 @@ def Multiplication(A, B, RowsC, ColsC, InnerDim):
     for i in range(RowsC):
         for j in range(ColsC):
             for l in range(InnerDim):
-                C[i][j] += float(A[i][l])*float(B[l][j])
+                C[i][j] += round(float(Fraction(A[i][l]))*float(Fraction(B[l][j])),3)
 
     return(C)
 
 
 def Printing(C):
    print("\nMatrix C:")
-   #i = 0
    for i in range(len(C[0])): 
        print(str(C[i][0:len(C)]))
 
