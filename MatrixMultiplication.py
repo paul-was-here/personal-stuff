@@ -46,13 +46,12 @@ def Printing(C):
     print("\nMatrix C:")
     for i in range(len(C)):
         print(str(C[i][:]))
+
+def ValidateDimensions(X,Y):
+    return("" if X==Y else exit("Inner dimensions do not match."))
        
 Am, An = Dimensions("A")
 Bn, Bo = Dimensions("B")
-
-if An != Bn:
-    print("Inner dimensions must match.")
-    exit()
-
+ValidateDimensions(An,Bn)
 MxA, MxB = Values(Am,An," A "), Values(Bn,Bo," B ")
 Printing(Multiplication(MxA,MxB,Am,Bo,An))
