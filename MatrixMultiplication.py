@@ -38,7 +38,8 @@ def Multiplication(A, B, RowsC, ColsC, InnerDim):
     for i in range(RowsC):
         for j in range(ColsC):
             for l in range(InnerDim):
-                C[i][j] += round(A[i][l]*B[l][j],3)
+                C[i][j] += A[i][l]*B[l][j]
+            C[i][j] = round(C[i][j],3)
 
     return(C)
 
@@ -49,7 +50,8 @@ def Printing(C):
 
 def ValidateDimensions(X,Y):
     return("" if X==Y else exit("Inner dimensions do not match."))
-       
+    
+print("\n")
 Am, An = Dimensions("A")
 Bn, Bo = Dimensions("B")
 ValidateDimensions(An,Bn)
