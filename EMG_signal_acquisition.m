@@ -30,8 +30,12 @@ function plot_data(src, ~)
 
     plot(timeBuffer - timeBuffer(1), dataBuffer, 'b');
     hold on;
-    plot (timeBuffer - timeBuffer(1), filteredData, 'r');
-    
-
-
+    plot(timeBuffer - timeBuffer(1), filteredData, 'r');
+    plot(timeBuffer - timeBuffer(1), rectifiedData, 'g');
+    plot(timeBuffer - timeBuffer(1), smoothedData, 'm');
+    hold off;
+    ylabel("Voltage (V)");
+    xlabel("Time (s)");
+    legend('Raw Data','Filtered Data','Rectified Data','SmoothedData');
+    xlim([0 5]);
 end
