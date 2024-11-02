@@ -34,7 +34,7 @@ def str2num(x):
     return(float(Fraction(x)))
 
 def horzcat(Left,Right):
-    # Concatenates horizontally Left and Right of the same # of rows and returns it as S
+    # Horizontally concatenates two matrices (L, R) of the same number of rows
     rows = len(Left)
     cols = len(Left[0]) + len(Right[0]) 
     S = [[0 for x in range(cols)] for y in range(rows)]
@@ -59,24 +59,24 @@ def SubMatrix(A, StartR, EndR, StartC, EndC):
 
 def Determinant(Matrix, Rows, Cols, det=0):
     if Rows == 2 or Cols == 2:
-        #First identify case of 2x2 matrix
+        #2x2 matrix case - no need for Laplace expansion
         return(Matrix[0][0]*Matrix[1][1] - Matrix[0][1]*Matrix[1][0])
     else:
         #Otherwise, employ the most basic algorithm to just expand along the first row
         for n in range(0,Cols):
             if n == 0:
-                #Case 1: n = 0 - first column - get the determinant of Row 1:x and Col 1:x
+                #Case 1: n = 0 (first column) - get the det of Row 1:x and Col 1:x
                 LesserMatrix = SubMatrix(Matrix, 1,Rows-1, 1,Cols-1)
             elif n == Cols-1:
-                #Case 2: n = Cols-1 - Final column. - get determinant of Row 1:(Rows-1) and Col 0:(Rows-2)
+                #Case 2: n = Cols-1 (rightmost column) - get the det of Row 1:x and Col 0:Cols-2
                 LesserMatrix = SubMatrix(Matrix, 1,Rows-1, 0,Cols-2)
             elif n > 0 and n < Cols-1:
-                #Case 3: n = a column in the middle of the matrix.
-                #First grab the left half (i.e. 0 to n-1) and ALL ROWS excl 1st row: 1 to Rows-1
+                #Case 3: n is a column in the middle of the matrix.
+                #First grab the left half (Cols 0 : n-1) and ALL ROWS 1:Rows-1
                 LeftHalf = SubMatrix(Matrix, 1,Rows-1, 0,n-1)
-                #Repeat for the right half, which will be from n+1 to Cols-1, and all rows 1 to Rows-1
+                #Repeat for the right half (n+1 : Cols-1) and ALL ROWS 1:Rows-1
                 RightHalf = SubMatrix(Matrix, 1,Rows-1, n+1,Cols-1)
-                #Now use the custom horzcat function (stealing the name from matlab) to horizontally concat L&R into a square matrix
+                #Now use the horzcat function (name lazily stolen from matlab) to combine into one square matrix
                 LesserMatrix = horzcat(LeftHalf,RightHalf)
             else:
                 exit("unexpected situation")
