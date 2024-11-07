@@ -25,6 +25,8 @@ def Values(Rows,Cols):
 
     for i in range(0,Rows,1):
         row = input("Enter Row "+str(i+1)+" separated by spaces: ")
+        if len(row.split(" ")) > Cols:
+            exit("Too many arguments entered")
         for j in range(0,Cols,1):
             Matrix[i][j] = str2num(row.split(" ")[j])
 
