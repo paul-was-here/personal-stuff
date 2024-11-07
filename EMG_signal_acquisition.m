@@ -54,7 +54,7 @@ function plot_data(src, ~)
     xlim([0 5]);
 end
 
-function stop_daq(~, ~, daq0bj)
-    stop(daq0bk);
+function stop_daq(~, ~, daqObj)
+    stop(daqObj);
     delete(gcf);
 end
